@@ -2,13 +2,35 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { IndexComponent } from './pages/index/index.component';
+import { HeaderComponent } from './blocks/header/header.component';
+import { HeaderBannerComponent } from './blocks/header-banner/header-banner.component';
+import { BannerComponent } from './blocks/banner/banner.component';
+import { SaleComponent } from './pages/sale/sale.component';
+import { MenComponent } from './pages/men/men.component';
+import { WomenComponent } from './pages/women/women.component';
+import { KidsComponent } from './pages/kids/kids.component';
+import { LoginComponent } from './pages/login/login.component';
+import { CurrencyDropdownComponent } from './blocks/currency-dropdown/currency-dropdown.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    IndexComponent,
+    HeaderComponent,
+    HeaderBannerComponent,
+    BannerComponent,
+    SaleComponent,
+    MenComponent,
+    WomenComponent,
+    KidsComponent,
+    LoginComponent,
+    CurrencyDropdownComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
