@@ -2,27 +2,27 @@
   <div class="login container">
     <h1>Login</h1>
 
-    <form class="login form">
+    <form #lf="ngForm" class="login form" (ngSubmit)="login()">
       <div class="login input">
-        <input type="email" placeholder="Email Address" name="email">
+        <input type="email" placeholder="Email Address" name="email" [(ngModel)]="form.login.email">
       </div>
       <div class="login input">
-        <input type="password" placeholder="Password" name="password">
+        <input type="password" placeholder="Password" name="password" [(ngModel)]="form.login.password">
       </div>
       <button type="submit">LOGIN</button>
     </form>
-    <form class="register form">
+    <form #rf="ngForm" class="register form" (ngSubmit)="register()">
       <p class="or register">
         <span>Or Register</span>
       </p>
       <div class="login input">
-        <input type="email" placeholder="Email Address" name="email">
+        <input type="email" placeholder="Email Address" name="email" [(ngModel)]="form.register.email">
       </div>
       <div class="halved login input">
-        <input type="password" placeholder="Password" name="password">
+        <input type="password" placeholder="Password" name="password" [(ngModel)]="form.register.password">
       </div>
       <div class="halved login input">
-        <input type="password" placeholder="Confirm Password" name="cpassword">
+        <input type="password" placeholder="Confirm Password" name="cpassword" [(ngModel)]="form.register.cpassword">
       </div>
       <button type="submit">REGISTER</button>
     </form>

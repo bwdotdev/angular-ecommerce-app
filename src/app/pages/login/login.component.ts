@@ -1,6 +1,7 @@
-declare var $:any;
+declare var $: any;
 
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import {NgForm} from '@angular/forms';
 
 import { User } from '../../user';
 import { UserService } from '../../user.service';
@@ -13,41 +14,47 @@ import { AuthenticationService } from '../../authentication.service';
 })
 export class LoginComponent implements OnInit, AfterViewInit {
 
+  form: any = {
+    login: {},
+    register: {}
+  };
+
   constructor(private userService: UserService, private authService: AuthenticationService) { }
 
   ngOnInit() {
-    $('body').on('focus', '.login.input input', function() {
+    const loginComponent = this;
+    $('body').on('focus', '.login.input input', function () {
       $(this).parent().addClass('active');
     });
-    $('body').on('blur', '.login.input input', function() {
+    $('body').on('blur', '.login.input input', function () {
       $(this).parent().removeClass('active');
     });
-    $('body').on('keyup', '.login.input input', function() {
-      var $this = $(this);
-      if(!$this.val()) {
-        $this.parent().removeClass('active');
-      } else {
-        $this.parent().addClass('active');
-      }
+    $('body').on('keyup', '.login.input input', function () {
+      $(this).parent().addClass('active');
     });
-    $('body').on('submit', '.login.container .login.form', function(e) {
+    $('body').on('submitoff', '.login.container .login.form', function (e) {
       e.preventDefault();
 
-      var data:any = {};
-      $.each($('form').serializeArray(), function() {
-          data[this.name] = this.value;
+      const data: any = {};
+      $.each($(this).serializeArray(), function () {
+        data[this.name] = this.value;
       });
+      console.log(data);
 
-      if(!data.email || !data.password) {
+      if (!data.email || !data.password) {
         console.log('NOPE');
       } else {
-        console.log(this.authService.login(data.email, data.password));
+        console.log(loginComponent.authService.login(data.email, data.password));
       }
     });
   }
 
+  login() {
+    console.log(this.authService.login(this.form.login.email, this.form.login.password));
+  }
+
   ngAfterViewInit() {
-    
+
   }
 
 }
