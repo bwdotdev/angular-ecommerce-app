@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AuthenticationService } from '../../authentication.service'
+import { AuthenticationService } from '../../authentication.service';
 
 @Component({
   selector: 'app-header-banner',
@@ -9,7 +9,11 @@ import { AuthenticationService } from '../../authentication.service'
 })
 export class HeaderBannerComponent implements OnInit {
 
-  constructor(private authService: AuthenticationService) { }
+  authService: AuthenticationService;
+
+  constructor(authService: AuthenticationService) {
+    this.authService = authService;
+  }
 
   ngOnInit() {
   }

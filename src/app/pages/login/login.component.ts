@@ -28,6 +28,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
     cpassword: string
   };
 
+  error: string;
+
   constructor(private fb: FormBuilder, private authService: AuthenticationService, private router: Router) {
     this.lForm = fb.group({
       email: [null, [Validators.required, Validators.email]],
@@ -86,8 +88,26 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   async login(user) {
-    const loggedInUser = await this.authService.login(user);
-    this.router.navigateByUrl('account');
+    if(!this.lForm.valid) {
+      this.error = 'Please enter your username and password.';
+      return;
+    }
+
+    this.authService.login(user).then(loggedInUser => {
+      this.router.navigateByUrl('account');
+    }).catch(error => {
+      if(error.status && error.status === 422) {
+        this.error = 'Sorry, those details are incorrect.';
+      } else if(error.status && error.status === 418) {
+        return;
+      } else {
+        this.error = 'An unknown error occurred.';
+      }
+    });
+  }
+
+  async register(user) {
+
   }
 
   ngAfterViewInit() {

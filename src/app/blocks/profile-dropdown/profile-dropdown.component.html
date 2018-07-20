@@ -1,0 +1,6 @@
+<div class="currency dropdown">
+  <a (click)="toggleDropdown()" (blur)="closeDropdown()">{{ this.authService.userProp('username') }}</a>
+  <div class="dropdown items" [class.open]="this.open">
+    <a (click)="authService.logout()">Logout</a>
+  </div>
+</div>

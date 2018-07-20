@@ -6,8 +6,8 @@
     <a class="social" href="https://www.instagram.com/some_shop" target="_blank"><i class="fab fa-instagram"></i></a>
   </div>
   <div class="account">
-    <a routerLink="login" *ngIf="!authService.loggedIn()">Login / Register</a>
-    <a routerLink="account" *ngIf="authService.loggedIn()">{{ authService.user().username }}</a>
+    <a routerLink="login" *ngIf="!this.authService.loggedIn()">Login / Register</a>
+    <app-profile-dropdown *ngIf="this.authService.loggedIn()"></app-profile-dropdown>
     <app-currency-dropdown></app-currency-dropdown>
   </div>
 </div>

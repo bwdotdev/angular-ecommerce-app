@@ -15,6 +15,7 @@ import { WomenComponent } from './pages/women/women.component';
 import { KidsComponent } from './pages/kids/kids.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CurrencyDropdownComponent } from './blocks/currency-dropdown/currency-dropdown.component';
+import { ProfileDropdownComponent } from './blocks/profile-dropdown/profile-dropdown.component';
 import { AccountComponent } from './pages/account/account.component';
 
 @NgModule({
@@ -30,6 +31,7 @@ import { AccountComponent } from './pages/account/account.component';
     KidsComponent,
     LoginComponent,
     CurrencyDropdownComponent,
+    ProfileDropdownComponent,
     AccountComponent
   ],
   imports: [

@@ -14,7 +14,7 @@ export class AccountComponent implements OnInit {
 
   ngOnInit() {
     if(!this.authService.loggedIn()) {
-      this.router.navigateByUrl('');
+      this.router.navigateByUrl('login');
     }
   }
 

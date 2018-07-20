@@ -1,6 +1,6 @@
 <section class="login">
   <div class="login container">
-    <h1>Login</h1>
+    <h1>Login / Register</h1>
 
     <form class="login form" [formGroup]="lForm" (ngSubmit)="login(lForm.value)">
       <div class="login input">
@@ -9,9 +9,11 @@
       <div class="login input">
         <input type="password" placeholder="Password" formControlName="password">
       </div>
-      <button type="submit">LOGIN</button>
+      <button type="submit">SUBMIT</button>
+      <!-- <button type="submit">REGISTER</button> -->
     </form>
-    <form class="register form" [formGroup]="rForm" (ngSubmit)="register(rForm.value)">
+    <span class="error">{{ error || '&nbsp;' }}</span>
+    <!-- <form class="register form" [formGroup]="rForm" (ngSubmit)="register(rForm.value)">
       <p class="or register">
         <span>Or Register</span>
       </p>
@@ -27,6 +29,6 @@
         </div>
       </div>
       <button type="submit">REGISTER</button>
-    </form>
+    </form> -->
   </div>
 </section>
