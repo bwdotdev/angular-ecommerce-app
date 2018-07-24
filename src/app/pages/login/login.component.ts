@@ -15,52 +15,26 @@ import { AuthenticationService } from '../../authentication.service';
 })
 export class LoginComponent implements OnInit, AfterViewInit {
 
-  lForm: FormGroup;
-  lUser: {
-    username: string,
-    password: string
-  };
+  formType: string;
 
-  rForm: FormGroup;
-  rUser: {
+  lrForm: FormGroup;
+  lrUser: {
     username: string,
     password: string,
-    cpassword: string
+    cpassword?: string
   };
 
   error: string;
 
   constructor(private fb: FormBuilder, private authService: AuthenticationService, private router: Router) {
-    this.lForm = fb.group({
+    this.lrForm = fb.group({
       email: [null, [Validators.required, Validators.email]],
-      password: [null, Validators.required]
+      password: [null, Validators.required],
+      cpassword: [null]
     });
-
-    this.rForm = fb.group({
-      email: [null, [Validators.required, Validators.email]],
-      passwords: fb.group({
-        password: [null, [Validators.required, Validators.minLength(7)]],
-        cpassword: [null, [Validators.required]]
-      }, {validator: this.matchValidator})
-    });
-  }
-
-  matchValidator(fg: FormGroup) {
-    var valid = false;
-
-    var lastVal = null;
-    for (var name in fg.controls) {
-      var val = fg.controls[name].value
-      if(!lastVal) lastVal = val;
-
-      if(lastVal !== val) return { mismatch: true }
-    }
-  
-    return null;
   }
 
   ngOnInit() {
-    const loginComponent = this;
     $('body').on('focus', '.login.input input', function () {
       $(this).parent().addClass('active');
     });
@@ -70,44 +44,63 @@ export class LoginComponent implements OnInit, AfterViewInit {
     $('body').on('keyup', '.login.input input', function () {
       $(this).parent().addClass('active');
     });
-    // $('body').on('submitoff', '.login.container .login.form', function (e) {
-    //   e.preventDefault();
-
-    //   const data: any = {};
-    //   $.each($(this).serializeArray(), function () {
-    //     data[this.name] = this.value;
-    //   });
-    //   console.log(data);
-
-    //   if (!data.email || !data.password) {
-    //     console.log('NOPE');
-    //   } else {
-    //     console.log(loginComponent.authService.login(data.email, data.password));
-    //   }
-    // });
   }
 
-  async login(user) {
-    if(!this.lForm.valid) {
-      this.error = 'Please enter your username and password.';
+  async loginOrRegister(user) {
+    // if(!this.formType) return;
+
+    if(!this.lrForm.valid) {
+      if(this.lrForm.controls.email.status !== 'VALID') this.error = 'Invalid email address';
+      else if(this.lrForm.controls.password.status !== 'VALID') this.error = 'Invalid password';
+      else if(this.lrForm.controls.cpassword.status !== 'VALID') this.error = 'Invalid password';
+      else this.error = 'Please enter your username and password.';
       return;
     }
+    this.error = '';
 
-    this.authService.login(user).then(loggedInUser => {
-      this.router.navigateByUrl('account');
-    }).catch(error => {
-      if(error.status && error.status === 422) {
-        this.error = 'Sorry, those details are incorrect.';
-      } else if(error.status && error.status === 418) {
+    if(this.formType === 'login') {
+      this.authService.login(user).then(loggedInUser => {
+        this.router.navigateByUrl('account');
+      }).catch(error => {
+        if(error.status && error.status === 422) {
+          this.error = 'Sorry, those details are incorrect.';
+        } else if(error.status && error.status === 418) {
+          return;
+        } else {
+          this.error = 'An unknown error occurred.';
+        }
+      });
+    } else {
+      if(user.password !== user.cpassword) {
+        this.error = 'Sorry, those passwords do not match.';
         return;
-      } else {
-        this.error = 'An unknown error occurred.';
       }
-    });
+      delete user.cpassword;
+
+      this.authService.register(user).then(registeredUser => {
+        // this.router.navigateByUrl('account');
+        console.log(registeredUser);
+      }).catch(error => {
+        if(error.status && error.status === 422) {
+          this.error = 'Sorry, those details are incorrect.';
+        } else if(error.status && error.status === 418) {
+          return;
+        } else {
+          this.error = 'An unknown error occurred.';
+        }
+      });
+    }
   }
 
   async register(user) {
 
+  }
+
+  async checkEmail(email) {
+    if(email) {
+      const emailExists = await this.authService.emailExists(email);
+      this.formType = emailExists ? 'login' : 'register';
+    }
   }
 
   ngAfterViewInit() {

@@ -1,0 +1,114 @@
+footer {
+    width: 100%;
+    background-color: #424242;
+    color: #FFFFFF;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    // display: flex;
+    // justify-content: center;
+    text-align: center;
+}
+
+footer > .flex {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+footer > .flex > ul.menu {
+    list-style: none;
+    width: 200px;
+    // background-color: red;
+    padding: 0;
+    margin: 0 20px;
+    text-transform: uppercase;
+    text-align: left;
+}
+
+footer > .flex > ul.menu > li + li.title {
+    margin-top: 10px;
+}
+
+footer > .flex > ul.menu > li.title {
+    font-weight: bold;
+    margin-bottom: 2px;
+    font-size: 14px;
+}
+
+footer > .flex > ul.menu > li a {
+    color: #BDBDBD;
+    text-decoration: none;
+    font-size: 12px;
+    user-select: none;
+}
+
+footer > .flex > ul.menu > li a:hover {
+    color: #FFFFFF;
+}
+
+footer ul > li.payment.methods {
+    // text-align: center;
+    margin-top: 15px;
+    display: inline-block;
+    text-align: center;
+}
+
+footer ul > li.payment.methods i {
+    font-size: 26px;
+    margin-right: 3px;
+}
+
+footer > p {
+    font-size: 12px;
+}
+
+footer > .title {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    display: inline-grid;
+    text-decoration: none;
+    margin: 10px 0;
+}
+
+footer > .title:hover,
+footer > .title:active,
+footer > .title:focus {
+    outline: none;
+}
+
+footer > .title :first-child {
+    font-weight: 100;
+    display: inline-block;
+    margin: 0;
+    color: #BDBDBD;
+}
+
+footer > .title :last-child {
+    display: inline-block;
+    margin: 0 auto;
+    background-color: #BDBDBD;
+    color: #424242;
+    padding: 0 10px 0 15px;
+    letter-spacing: 5px;
+    font-size: 18px;
+    text-align: center;
+}
+
+footer > .title:hover :first-child {
+    color: #FFFFFF;
+}
+footer > .title:hover :last-child {
+    background-color: #FFFFFF;
+}
+
+@media only screen and (max-width: 750px) {
+    footer > .flex {
+        // display: block;
+    }
+
+    footer > .flex > ul.menu {
+        // width: 50%;
+        // text-align: center;
+    }
+}

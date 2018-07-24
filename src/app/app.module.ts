@@ -17,6 +17,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { CurrencyDropdownComponent } from './blocks/currency-dropdown/currency-dropdown.component';
 import { ProfileDropdownComponent } from './blocks/profile-dropdown/profile-dropdown.component';
 import { AccountComponent } from './pages/account/account.component';
+import { CategoryComponent } from './pages/category/category.component';
+import { FooterComponent } from './blocks/footer/footer.component';
+import { SocialsComponent } from './blocks/socials/socials.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { AccountComponent } from './pages/account/account.component';
     LoginComponent,
     CurrencyDropdownComponent,
     ProfileDropdownComponent,
-    AccountComponent
+    AccountComponent,
+    CategoryComponent,
+    FooterComponent,
+    SocialsComponent
   ],
   imports: [
     BrowserModule,

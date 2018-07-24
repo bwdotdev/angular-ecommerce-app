@@ -1,34 +1,19 @@
 <section class="login">
   <div class="login container">
-    <h1>Login / Register</h1>
+    <h1>{{ formType ? (formType === 'login' ? 'Login' : 'Register') : 'Login / Register' }}</h1>
 
-    <form class="login form" [formGroup]="lForm" (ngSubmit)="login(lForm.value)">
+    <form class="login form" [formGroup]="lrForm" (ngSubmit)="loginOrRegister(lrForm.value)">
       <div class="login input">
-        <input type="email" placeholder="Email Address" formControlName="email">
+        <input type="email" placeholder="Email Address" formControlName="email" (blur)="checkEmail(emailField.value)" #emailField>
       </div>
       <div class="login input">
         <input type="password" placeholder="Password" formControlName="password">
       </div>
-      <button type="submit">SUBMIT</button>
-      <!-- <button type="submit">REGISTER</button> -->
+      <div class="login input" *ngIf="formType === 'register'">
+        <input type="password" placeholder="Confirm Password" formControlName="cpassword">
+      </div>
+      <button type="submit">{{ formType ? (formType === 'login' ? 'LOGIN' : 'REGISTER') : 'SUBMIT' }}</button>
     </form>
     <span class="error">{{ error || '&nbsp;' }}</span>
-    <!-- <form class="register form" [formGroup]="rForm" (ngSubmit)="register(rForm.value)">
-      <p class="or register">
-        <span>Or Register</span>
-      </p>
-      <div class="login input">
-        <input type="email" placeholder="Email Address" name="email" formControlName="email">
-      </div>
-      <div formGroupName="passwords">
-        <div class="halved login input">
-          <input type="password" placeholder="Password" name="password" formControlName="password">
-        </div>
-        <div class="halved login input">
-          <input type="password" placeholder="Confirm Password" name="cpassword" formControlName="cpassword">
-        </div>
-      </div>
-      <button type="submit">REGISTER</button>
-    </form> -->
   </div>
 </section>

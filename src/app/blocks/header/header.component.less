@@ -94,3 +94,33 @@ app-header-banner + header + .header.escaper,
 .header.banner + header + .header.escaper {
   height: 150px;
 }
+
+
+@media only screen and (max-width: 750px) {
+  header {
+    height: 150px;
+  }
+
+  header .title {
+    left: 50%;
+    transform: translateX(-50%);
+    top: 20px;
+    margin: 0;
+  }
+
+  header nav {
+    width: 100%;
+    top: 90px;
+    transform: none;
+    margin: 0;
+    float: none;
+    right: unset;
+    align-items: center;
+    justify-content: center;
+  }
+
+  app-header-banner + header + .header.escaper,
+  .header.banner + header + .header.escaper {
+    height: 180px;
+  }
+}

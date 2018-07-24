@@ -18,4 +18,8 @@ export class HeaderBannerComponent implements OnInit {
   ngOnInit() {
   }
 
+  isMobile(): boolean {
+    return window.screen.width <= 750;
+  }
+
 }

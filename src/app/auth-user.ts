@@ -1,7 +1,6 @@
 export interface AuthUser {
 
-    email?: string,
-    username?: string,
+    email: string,
     password: string
 
 }

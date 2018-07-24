@@ -1,6 +1,7 @@
 <div class="currency dropdown">
-  <a (click)="toggleDropdown()" (blur)="closeDropdown()">{{ this.authService.userProp('username') }}</a>
+  <a (click)="toggleDropdown()" (blur)="closeDropdown()">{{ this.authService.userProp('username') || this.authService.userProp('email.address') }}</a>
   <div class="dropdown items" [class.open]="this.open">
+    <a routerLink="account" (click)="closeDropdown()">My Account</a>
     <a (click)="authService.logout()">Logout</a>
   </div>
 </div>
