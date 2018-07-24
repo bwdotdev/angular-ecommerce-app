@@ -44,6 +44,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
     $('body').on('keyup', '.login.input input', function () {
       $(this).parent().addClass('active');
     });
+
+    if(this.authService.loggedIn()) this.router.navigateByUrl('account');
   }
 
   async loginOrRegister(user) {
@@ -61,6 +63,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     if(this.formType === 'login') {
       this.authService.login(user).then(loggedInUser => {
         this.router.navigateByUrl('account');
+        console.log(loggedInUser);
       }).catch(error => {
         if(error.status && error.status === 422) {
           this.error = 'Sorry, those details are incorrect.';
@@ -78,7 +81,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       delete user.cpassword;
 
       this.authService.register(user).then(registeredUser => {
-        // this.router.navigateByUrl('account');
+        this.router.navigateByUrl('account');
         console.log(registeredUser);
       }).catch(error => {
         if(error.status && error.status === 422) {
