@@ -1,42 +1,56 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { User } from './user';
-
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private http: HttpClient) { }
+  defaultSettings: object = {
+    currency: ['USD', '$']
+  };
 
-  get(userID: number): User {
-    return {
-      userID: userID,
-      email: ''
-    };
+  constructor(private http: HttpClient) {
+    this.getSettings();
   }
 
-  getAll(): User[] {
-    return [];
+  getSettings(): object {
+    const settings = JSON.parse(localStorage.getItem('UserSettings')) || this.defaultSettings;
+    return settings;
   }
 
-  create(user: User): User {
-    return {
-      userID: user.userID,
-      email: user.email
-    };
+  getSetting(setting: string): any {
+    const values = setting.split('.');
+
+    let current = this.getSettings();
+    values.forEach((val, key) => {
+      current = current[val];
+    });
+    return current || null;
   }
 
-  update(user: User): User {
-    return {
-      userID: user.userID,
-      email: user.email
-    };
-  }
+  updateSetting(setting: string, value: any) {
+    const old = this.getSettings();
+    
+    const values = setting.split('.');
 
-  delete(user: User): boolean {
-    return true;
-  }
+    let update = {};
+    let last;
+    values.forEach((val, key) => {
+      if(key === values.length - 1 && !last) {
+        update[val] = value;
+      } else if(key === values.length - 1) {
+        last[val] = value;
+      } else if(last) {
+        last[val] = {};
+        last = last[val];
+      } else {
+        update[val] = {};
+        last = update[val];
+      }
+    });
 
+    const updated = Object.assign(old, update);
+    localStorage.setItem('UserSettings', JSON.stringify(updated));
+  }
 }

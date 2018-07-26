@@ -1,8 +1,13 @@
-<div class="currency dropdown">
-  <i class="united kingdom flag"></i>
-  <div class="dropdown items">
-    <i class="united kingdom flag"></i>
-    <i class="united kingdom flag"></i>
-    <i class="united kingdom flag"></i>
+<div class="currency dropdown" (click)="toggleDropdown()">
+  <a><i class="united kingdom flag"></i></a>
+  <div class="dropdown items" [class.open]="this.open">
+    <span class="dropdown item" (click)="setCurrency('GBP', '£')">
+      <i class="united kingdom flag"></i>
+      &pound;
+    </span>
+    <span class="dropdown item" (click)="setCurrency('EUR', '€')">
+      <i class="united kingdom flag"></i>
+      &euro;
+    </span>
   </div>
 </div>

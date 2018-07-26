@@ -20,6 +20,7 @@ import { AccountComponent } from './pages/account/account.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { FooterComponent } from './blocks/footer/footer.component';
 import { SocialsComponent } from './blocks/socials/socials.component';
+import { PriceComponent } from './blocks/price/price.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { SocialsComponent } from './blocks/socials/socials.component';
     AccountComponent,
     CategoryComponent,
     FooterComponent,
-    SocialsComponent
+    SocialsComponent,
+    PriceComponent
   ],
   imports: [
     BrowserModule,

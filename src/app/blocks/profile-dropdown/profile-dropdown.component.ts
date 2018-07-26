@@ -38,6 +38,6 @@ export class ProfileDropdownComponent implements OnInit {
     if(this.open && !this._eref.nativeElement.contains(event.target)) {
       this.closeDropdown();
     }
-   }
+  }
 
 }
