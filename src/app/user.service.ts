@@ -10,6 +10,8 @@ export class UserService {
     currency: ['USD', '$']
   };
 
+  localStorageUpdate: Event = new Event('localStorageUpdate');
+
   constructor(private http: HttpClient) {
     this.getSettings();
   }
@@ -52,5 +54,6 @@ export class UserService {
 
     const updated = Object.assign(old, update);
     localStorage.setItem('UserSettings', JSON.stringify(updated));
+    window.dispatchEvent(this.localStorageUpdate);
   }
 }

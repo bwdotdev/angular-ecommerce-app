@@ -18,8 +18,9 @@ export class CurrencyDropdownComponent implements OnInit {
 
   ngOnInit() { }
 
-  setCurrency(currency: string, symbol: string) {
-    this.userService.updateSetting('currency', [currency, symbol]);
+  setCurrency(elem) {
+    this._eref.nativeElement.querySelector('#selectedCurrency').setAttribute("class", elem.querySelector('i.flag').getAttribute("class"));
+    this.userService.updateSetting('currency', [elem.getAttribute("data-c"), elem.getAttribute("data-s")]);
   }
 
   toggleDropdown() {

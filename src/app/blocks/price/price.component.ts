@@ -6,7 +6,10 @@ import { UserService } from '../../user.service';
 @Component({
   selector: 'app-price',
   templateUrl: './price.component.html',
-  styleUrls: ['./price.component.less']
+  styleUrls: ['./price.component.less'],
+  host: {
+    '(window:localStorageUpdate)': 'updatePrice()'
+  }
 })
 export class PriceComponent implements OnInit {
 
@@ -20,18 +23,19 @@ export class PriceComponent implements OnInit {
   async ngOnInit() {
     this.updatePrice();
     const that = this;
-    window.addEventListener( "storage", this.handleStorageEvent );
+    // window.addEventListener("localStorageUpdate", this.updatePrice);
   }
 
   async updatePrice() {
     console.log('update price');
     const userCurrency = this.userService.getSetting('currency');
+    console.log(userCurrency);
     if(this.currency !== userCurrency[0]) {
       this.price = await this.convert(this.default, userCurrency[0], this.currency);
-      this.symbol = userCurrency[1];
     } else {
       this.price = this.default;
     }
+    this.symbol = userCurrency[1];
   }
 
   convert(price: number, to: string, from: string = this.currency): Promise<number> {
@@ -49,11 +53,6 @@ export class PriceComponent implements OnInit {
         }
       });
     });
-  }
-
-  handleStorageEvent(event: StorageEvent) {
-    console.log(event);
-    this.updatePrice();
   }
 
 }
