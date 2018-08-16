@@ -23,13 +23,10 @@ export class PriceComponent implements OnInit {
   async ngOnInit() {
     this.updatePrice();
     const that = this;
-    // window.addEventListener("localStorageUpdate", this.updatePrice);
   }
 
   async updatePrice() {
-    console.log('update price');
     const userCurrency = this.userService.getSetting('currency');
-    console.log(userCurrency);
     if(this.currency !== userCurrency[0]) {
       this.price = await this.convert(this.default, userCurrency[0], this.currency);
     } else {
