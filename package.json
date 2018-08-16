@@ -24,6 +24,7 @@
     "hoek": "^4.2.1",
     "jquery": "^3.3.1",
     "rxjs": "^6.0.0",
+    "url-parse": "^1.4.3",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
