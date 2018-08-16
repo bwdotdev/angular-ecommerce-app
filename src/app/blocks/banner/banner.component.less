@@ -1,0 +1,126 @@
+.banner.container {
+  position: relative;
+  height: 500px;
+}
+
+.banner .button {
+  /*background-color: red;*/
+  height: 70px;
+  width: 35px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border-top: 2px solid #F62459;
+  border-bottom: 2px solid #F62459;
+  z-index: 0;
+  cursor: pointer;
+}
+
+.banner .button:after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #F62459;
+  font-size: 20px;
+  line-height: 70px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+.banner .button:hover {
+  background-color: #F62459;
+}
+
+.banner .button:hover:after {
+  color: #FFFFFF;
+}
+
+.banner .left.button {
+  left: -37px;
+  border-left: 2px solid #F62459;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.banner .left.button:after {
+  content: '\f104';
+}
+
+.banner .right.button:after {
+  content: '\f105';
+}
+
+.banner .right.button {
+  right: -37px;
+  border-right: 2px solid #F62459;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.banner .banner.items {
+  position: relative;
+//display: flex;
+  overflow-x: hidden;
+  white-space: nowrap;
+}
+
+.banner .banner.items .banner.item {
+  position: relative;
+  background-color: #FFFFFF;
+  z-index: 1;
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 100%;
+  height: 500px;
+}
+
+.banner .banner.items .banner.item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+  pointer-events: none;
+}
+
+@media only screen and (max-width: 750px) {
+  .banner.container {
+    height: 150px;
+  }
+
+  .banner .banner.items .banner.item {
+    height: 150px;
+  }
+
+  .banner .button {
+    // z-index: 2;
+    // background-color: #FFFFFF;
+    display: none;
+    visibility: hidden;
+  }
+
+  // .banner .right.button {
+  //   right: 0;
+  //   border-right: none;
+  //   border-top-right-radius: 0;
+  //   border-bottom-right-radius: 0;
+  //   border-left: 2px solid #F62459;
+  //   border-top-left-radius: 5px;
+  //   border-bottom-left-radius: 5px;
+  // }
+
+  // .banner .left.button {
+  //   left: 0;
+  //   border-left: none;
+  //   border-top-left-radius: 0;
+  //   border-bottom-left-radius: 0;
+  //   border-right: 2px solid #F62459;
+  //   border-top-right-radius: 5px;
+  //   border-bottom-right-radius: 5px;
+  // }
+  
+}

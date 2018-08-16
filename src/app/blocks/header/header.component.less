@@ -1,0 +1,126 @@
+header {
+  width: 100%;
+  height: 120px;
+  background-color: #ECECEC;
+  position: fixed;
+  z-index: 2;
+
+  -webkit-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+  -moz-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+  box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+}
+
+app-header-banner + header,
+.header.banner + header {
+  top: 30px;
+}
+
+header .title {
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  //width: 200px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-grid;
+  margin-left: 5%;
+  text-decoration: none;
+}
+
+header .title:hover,
+header .title:active,
+header .title:focus {
+  outline: none;
+}
+
+header .title :first-child {
+  font-weight: 100;
+  display: inline-block;
+  margin: 0;
+  color: #000000;
+}
+
+header .title :last-child {
+  display: inline-block;
+  margin: 0 auto;
+  background-color: #F62459;
+  color: #FFFFFF;
+  padding: 0 10px 0 15px;
+  letter-spacing: 5px;
+  font-size: 18px;
+  text-align: center;
+}
+
+header nav {
+  display: flex;
+  float: right;
+  margin: 0 5% 0 0;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+header nav .item {
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 17px 0 20px;
+  color: #000000;
+  text-decoration: none;
+  letter-spacing: 3px;
+}
+
+header nav .item:hover,
+header nav .item:active,
+header nav .item:focus {
+  outline: none;
+}
+
+header nav .item.highlight {
+  color: #F62459;
+}
+
+header nav .item:hover {
+  background-color: rgba(189, 195, 199, 0.3);
+}
+
+.header.escaper {
+  height: 120px;
+}
+
+app-header-banner + header + .header.escaper,
+.header.banner + header + .header.escaper {
+  height: 150px;
+}
+
+
+@media only screen and (max-width: 750px) {
+  header {
+    height: 150px;
+  }
+
+  header .title {
+    left: 50%;
+    transform: translateX(-50%);
+    top: 20px;
+    margin: 0;
+  }
+
+  header nav {
+    width: 100%;
+    top: 90px;
+    transform: none;
+    margin: 0;
+    float: none;
+    right: unset;
+    align-items: center;
+    justify-content: center;
+  }
+
+  app-header-banner + header + .header.escaper,
+  .header.banner + header + .header.escaper {
+    height: 180px;
+  }
+}

@@ -1,0 +1,8 @@
+<div class="header banner">
+  <app-socials *ngIf="!isMobile()"></app-socials>
+  <div class="account">
+    <a routerLink="login" *ngIf="!this.authService.loggedIn()">Login / Register</a>
+    <app-profile-dropdown *ngIf="this.authService.loggedIn()"></app-profile-dropdown>
+    <app-currency-dropdown></app-currency-dropdown>
+  </div>
+</div>

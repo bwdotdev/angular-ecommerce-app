@@ -1,0 +1,79 @@
+.currency.dropdown {
+    display: flex;
+    height: 100%;
+    padding: 0 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.currency.dropdown:hover {
+    background-color: #f95881;
+}
+
+.currency.dropdown:after {
+    content: '\f0d7';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    display: inline-block;
+    line-height: 30px;
+    margin-left: 3px;
+    color: #FFFFFF;
+}
+
+.currency.dropdown > a {
+    line-height: 30px;
+    color: #FFFFFF;
+    user-select: none;
+    text-decoration: none;
+}
+
+.dropdown.items {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background-color: #FFFFFF;
+    box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+    min-width: 100%;
+    cursor: default;
+
+    display: none;
+}
+
+.dropdown.items.open {
+    display: block;
+}
+
+.dropdown.items > .dropdown.item {
+    width: 100%;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.dropdown.items > .dropdown.item:hover {
+    background-color: #f95881;
+    color: #FFFFFF;
+}
+
+.dropdown.items > .dropdown.item > i {
+    margin-right: 7px;
+}
+
+i.flag {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    margin: 3px;
+}
+
+i.united.kingdom.flag {
+    background: url('/assets/img/flags/260-united-kingdom.svg') no-repeat center;
+}
+
+i.european.union.flag {
+    background: url('/assets/img/flags/259-european-union.svg') no-repeat center;
+}
